@@ -15,7 +15,11 @@ class BookSearch extends React.Component {
 
         if(query) {
             BooksAPI.search(query)
-                    .then(books => this.updateBooks(books));
+                    .then(books => {
+                        if(Array.isArray(books)){
+                            this.updateBooks(books)
+                        }
+                    });
         } else {
             this.updateBooks();
         }

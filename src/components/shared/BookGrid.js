@@ -8,17 +8,17 @@ function BookGrid(props) {
 
     return (
         <ol className="books-grid">
-            {
-                books.map(book => (
-                    <li key={book.id}>
+        {           
+            books.map(book => (
+                <li key={book.id}>
 
-                        <Book 
-                            book={book}
-                            onShelfChange={onShelfChange}/>
-                            
-                    </li>
-                ))
-            }
+                    <Book 
+                        book={book}
+                        onShelfChange={onShelfChange}/>
+                        
+                </li>
+            ))
+        }
         </ol>
     );
 
