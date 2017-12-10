@@ -6,15 +6,20 @@ import BookGrid from '../shared/BookGrid';
 class BookSearch extends React.Component {
 
     state = {
-        books: []
+        books: [],
+        query: ''
     }
 
     onUserTypedQuery = (e) => {
     
-        const query = e.target.value.trim();
+        const query = e.target.value;
+
+        this.setState({
+            query
+        });
 
         if(query) {
-            BooksAPI.search(query)
+            BooksAPI.search(query.trim())
                     .then(books => {
                         if(Array.isArray(books)){
                             this.updateBooks(books)
@@ -48,7 +53,11 @@ class BookSearch extends React.Component {
                 
                 <div className="search-books-input-wrapper">
                   
-                  <input type="text" placeholder="Search by title or author" onChange={this.onUserTypedQuery}/>
+                  <input 
+                    type="text" 
+                    placeholder="Search by title or author"
+                    onChange={this.onUserTypedQuery}
+                    value={this.state.query}/>
   
                 </div>
 

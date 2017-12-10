@@ -8,8 +8,9 @@ function BookshelfChange(props){
     return (
         <div className="book-shelf-changer">
 
-            <select value={book.shelf || 'none'}
-                    onChange={(e) => onShelfChange(book, e.target.value)}>
+            <select 
+                value={book.shelf || 'none'}
+                onChange={(e) => onShelfChange(book, e.target.value)}>
 
                 <option value="none" disabled>Move to...</option>
 

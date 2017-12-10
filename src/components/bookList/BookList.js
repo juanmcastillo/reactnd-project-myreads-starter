@@ -3,7 +3,7 @@ import Bookshelf from './Bookshelf';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Library(props) {
+function BookList(props) {
 
     const { books, onShelfChange } = props;
 
@@ -25,13 +25,15 @@ function Library(props) {
             <div className="list-books-content">
             
             <div>                  
-                { bookShelfs.map((bookShelf, index) => (
-                    <Bookshelf 
-                        key={index}
-                        title={bookShelf.title}
-                        books={books.filter(book => book.shelf === bookShelf.value)}
-                        onShelfChange={onShelfChange} />
-                    ) ) }             
+                { 
+                    bookShelfs.map((bookShelf, index) => (
+                        <Bookshelf 
+                            key={index}
+                            title={bookShelf.title}
+                            books={books.filter(book => book.shelf === bookShelf.value)}
+                            onShelfChange={onShelfChange} />    
+                    ))
+                }             
 
             </div>
 
@@ -39,7 +41,9 @@ function Library(props) {
 
             <div className="open-search">
 
-            <Link className='' to='/search'>
+            <Link 
+                className='' 
+                to='/search'>
         
                 Add a book
                 
@@ -52,9 +56,9 @@ function Library(props) {
 
 }
 
-Library.propTypes = {
+BookList.propTypes = {
     books: PropTypes.array.isRequired,
     onShelfChange: PropTypes.func.isRequired
 }
 
-export default Library;
+export default BookList;

@@ -1,9 +1,9 @@
-import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
-import BookSearch from './components/search/BookSearch';
-import Library from './components/library/Library';
+import React from 'react';
 import * as BooksAPI from './BooksAPI';
+import { Route } from 'react-router-dom';
+import BookList from './components/bookList/BookList';
+import BookSearch from './components/search/BookSearch';
 
 class BooksApp extends React.Component {
   
@@ -38,7 +38,7 @@ class BooksApp extends React.Component {
       <div className="app"> 
 
         <Route exact path='/' render={() => (
-          <Library 
+          <BookList 
             books={this.state.books}
             onShelfChange={this.onShelfChange} />
         )}/> 
