@@ -23,12 +23,9 @@ class BooksApp extends React.Component {
             .then(response => {
               book.shelf = newShelf;
 
-              const updatedBooks = this.state.books.filter(b => b.id !== book.id);
-
-              updatedBooks.push(book);
-
               this.setState({
-                books: updatedBooks
+                books: this.state.books.filter(b => b.id !== book.id)
+                                       .concat([book])
               });
             });
   }
