@@ -33,6 +33,10 @@ class BooksApp extends React.Component {
             });
   }
 
+  getShelvedBooks(){
+    return this.state.books;
+  }
+
   render() {
     return (
       <div className="app"> 
@@ -45,6 +49,7 @@ class BooksApp extends React.Component {
         
         <Route exact path='/search' render={() => (
           <BookSearch 
+            shelvedBooks={this.state.books}
             onShelfChange={this.onShelfChange} />
         )}/>
         

@@ -2,8 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from '../../BooksAPI';
 import BookGrid from '../shared/BookGrid';
+import PropTypes from 'prop-types';
 
 class BookSearch extends React.Component {
+
+    static propTypes = {
+        onShelfChange: PropTypes.func.isRequired,
+        shelvedBooks: PropTypes.array.isRequired,
+    }
 
     state = {
         books: [],
@@ -21,8 +27,18 @@ class BookSearch extends React.Component {
         if(query) {
             BooksAPI.search(query.trim())
                     .then(books => {
-                        if(Array.isArray(books)){
-                            this.updateBooks(books)
+                        if(!books.error){
+                            const shelvedBooks = this.props.shelvedBooks;
+
+                            const booksWithShelves = books.map(book => {
+                                const bookWithShelf = shelvedBooks.find(b => b.id === book.id);
+
+                                book.shelf = bookWithShelf ? bookWithShelf.shelf : 'none';
+
+                                return book;
+                            });
+
+                            this.updateBooks(booksWithShelves);
                         }
                     });
         } else {
