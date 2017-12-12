@@ -37,6 +37,13 @@ class BookSearch extends React.Component {
         })
     }
 
+    clearSearch(){
+        this.setState({
+            query: ''
+        });
+        this.updateBooks([]);
+    }
+
     render(){
         const {onShelfChange} = this.props;
 
@@ -45,7 +52,7 @@ class BookSearch extends React.Component {
 
               <div className="search-books-bar">
                 
-                <Link className='close-search' to='/'>
+                <Link className="close-search" to="/">
                 
                     Close
 
@@ -61,10 +68,20 @@ class BookSearch extends React.Component {
   
                 </div>
 
+                <button 
+                    className="search-book-clear-btn" 
+                    onClick={() => {this.clearSearch([])}}>
+                    Clear
+                </button>
+
               </div>
 
               <div className="search-books-results">
                 
+                <div className="search-book-results-amount">
+                    <label>Showing <em>{this.state.books.length}</em> results.</label>
+                </div>               
+
                 <BookGrid 
                     books={this.state.books}
                     onShelfChange={onShelfChange} />
