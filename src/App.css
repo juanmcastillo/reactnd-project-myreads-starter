@@ -187,3 +187,8 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+/* 404 Page*/
+.not-found{
+  text-align: center;
+}
