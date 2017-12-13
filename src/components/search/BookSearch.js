@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import * as BooksAPI from '../../BooksAPI';
 import BookGrid from '../shared/BookGrid';
 import PropTypes from 'prop-types';
+import * as AppConstants from '../../utils/AppConstants';
+import escapeRegExp from 'escape-string-regexp';
 
 class BookSearch extends React.Component {
 
@@ -24,8 +26,10 @@ class BookSearch extends React.Component {
             query
         });
 
-        if(query) {
-            BooksAPI.search(query.trim())
+        const trimmedQuery = query.trim();
+
+        if(this.isQueryValid(trimmedQuery)) {
+            BooksAPI.search(trimmedQuery)
                     .then(books => {
                         if(!books.error){
                             const shelvedBooks = this.props.shelvedBooks;
@@ -45,6 +49,12 @@ class BookSearch extends React.Component {
             this.updateBooks();
         }
         
+    }
+
+    isQueryValid(query){
+        const matchesAtLeastATerm = AppConstants.VALID_SEARCH_TERMS
+                                                .some(term => new RegExp(escapeRegExp(term.toLowerCase()), 'i').test(query.toLowerCase()));
+        return query && matchesAtLeastATerm;
     }
 
     updateBooks(books){

@@ -2,16 +2,11 @@ import React from 'react';
 import Bookshelf from './Bookshelf';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import * as AppConstants from '../../utils/AppConstants';
 
 function BookList(props) {
 
     const { books, onShelfChange } = props;
-
-    const bookShelfs = [
-        { title: "Currently Reading", value: "currentlyReading" },
-        { title: "Want to Read", value: "wantToRead" },
-        { title: "Read", value: "read" },
-    ];
 
     return (
         <div className="list-books">
@@ -26,7 +21,7 @@ function BookList(props) {
             
             <div>                  
                 { 
-                    bookShelfs.map((bookShelf, index) => (
+                    AppConstants.BOOKSHELVES.map((bookShelf, index) => (
                         <Bookshelf 
                             key={index}
                             title={bookShelf.title}
