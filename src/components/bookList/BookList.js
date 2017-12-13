@@ -3,6 +3,7 @@ import Bookshelf from './Bookshelf';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as AppConstants from '../../utils/AppConstants';
+import ShortId from 'shortid';
 
 function BookList(props) {
 
@@ -23,7 +24,7 @@ function BookList(props) {
                 { 
                     AppConstants.BOOKSHELVES.map((bookShelf, index) => (
                         <Bookshelf 
-                            key={index}
+                            key={ShortId.generate()}
                             title={bookShelf.title}
                             books={books.filter(book => book.shelf === bookShelf.value)}
                             onShelfChange={onShelfChange} />    
