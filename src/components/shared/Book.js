@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BookshelfChanger from './BookshelfChanger';
+import * as AppConstants from '../../utils/AppConstants';
 
 function Book(props) {
 
@@ -15,7 +16,7 @@ function Book(props) {
                         style={{ 
                         width: 128,
                         height: 193,
-                        backgroundImage: `url("${book.imageLinks ? book.imageLinks.thumbnail : ''}")` 
+                        backgroundImage: `url("${book.imageLinks ? book.imageLinks.thumbnail : AppConstants.NO_IMAGE_FILE}")` 
                         }
                 }></div>
                 
